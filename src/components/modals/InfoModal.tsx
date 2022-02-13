@@ -46,7 +46,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="L" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        ㅅ는 포켓몬 이름에 들어있지 않았습니다.
+        ㅅ은 포켓몬 이름에 들어있지 않았습니다.
       </p>
       <p className="text-sm mt-4 text-gray-500">
         입력할 수 없는 포켓몬(폴리곤2, 폴리곤z)은 출제되지 않으며 '니드런♀',
