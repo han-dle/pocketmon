@@ -149,7 +149,7 @@ function App() {
     if (isGameWon) {
       const winMessage =
         WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
-      const delayMs = REVEAL_TIME_MS * currentGuess.length
+      const delayMs = REVEAL_TIME_MS * solution.length
 
       showSuccessAlert(winMessage, {
         delayMs,
@@ -160,9 +160,9 @@ function App() {
     if (isGameLost) {
       setTimeout(() => {
         setIsStatsModalOpen(true)
-      }, (currentGuess.length + 1) * REVEAL_TIME_MS)
+      }, (guesses[guesses.length - 1].length + 1) * REVEAL_TIME_MS)
     }
-  }, [isGameWon, isGameLost, showSuccessAlert, currentGuess])
+  }, [isGameWon, isGameLost, showSuccessAlert, guesses])
 
   const onChar = (value: string) => {
     if (
