@@ -16,7 +16,7 @@ import {
   MAX_WORD_LENGTH,
   MAX_CHALLENGES,
   REVEAL_TIME_MS,
-  GAME_LOST_INFO_DELAY,
+  // GAME_LOST_INFO_DELAY,
   WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
 import {
@@ -149,7 +149,7 @@ function App() {
     if (isGameWon) {
       const winMessage =
         WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
-      const delayMs = REVEAL_TIME_MS * MAX_WORD_LENGTH
+      const delayMs = REVEAL_TIME_MS * solution.length
 
       showSuccessAlert(winMessage, {
         delayMs,
@@ -160,9 +160,9 @@ function App() {
     if (isGameLost) {
       setTimeout(() => {
         setIsStatsModalOpen(true)
-      }, GAME_LOST_INFO_DELAY)
+      }, (guesses[guesses.length - 1].length + 1) * REVEAL_TIME_MS)
     }
-  }, [isGameWon, isGameLost, showSuccessAlert])
+  }, [isGameWon, isGameLost, showSuccessAlert, guesses])
 
   const onChar = (value: string) => {
     if (
@@ -217,7 +217,7 @@ function App() {
     // chars have been revealed
     setTimeout(() => {
       setIsRevealing(false)
-    }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+    }, REVEAL_TIME_MS * currentGuess.length)
 
     const winningWord = isWinningWord(currentGuess)
 
@@ -239,7 +239,7 @@ function App() {
         setIsGameLost(true)
         showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
           persist: true,
-          delayMs: REVEAL_TIME_MS * MAX_WORD_LENGTH + 1,
+          delayMs: REVEAL_TIME_MS * currentGuess.length + 1,
         })
       }
     }
