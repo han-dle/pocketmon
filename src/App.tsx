@@ -279,10 +279,11 @@ function App() {
           gameStats={stats}
           isGameLost={isGameLost}
           isGameWon={isGameWon}
-          handleShare={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
+          handleShareToClipboard={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
           isHardMode={isHardMode}
           isDarkMode={isDarkMode}
           isHighContrastMode={isHighContrastMode}
+          numberOfGuessesMade={guesses.length}
         />
         <SettingsModal
           isOpen={isSettingsModalOpen}
